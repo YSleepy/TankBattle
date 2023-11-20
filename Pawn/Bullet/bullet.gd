@@ -74,19 +74,28 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var map_position = temp_tile_map.local_to_map(position)
 		#Modify map_position according direction
 		var modified_position:Dictionary = modify_bullet_map_position(map_position,bullet_dirction,position)
+		
 		if modified_position["Modify"]=="x":
-			temp_tile_map.set_cell(0,modified_position["Value"],-1)
+			var is_destory1 = temp_tile_map.set_tile(0,modified_position["Value"],-1)
+			if is_destory1:
+				self.queue_free()
 			print(modified_position["Value"])
 			if modified_position["Carry"]!=0:
 				modified_position["Value"].x += modified_position["Carry"]
-				temp_tile_map.set_cell(0,modified_position["Value"],-1)
+				var is_destory2 = temp_tile_map.set_tile(0,modified_position["Value"],-1)
+				if is_destory2:
+					self.queue_free()
 		if modified_position["Modify"]=="y":
-			temp_tile_map.set_cell(0,modified_position["Value"],-1)
+			var is_destory1 = temp_tile_map.set_tile(0,modified_position["Value"],-1)
+			if is_destory1:
+				self.queue_free()
 			if modified_position["Carry"]!=0:
 				modified_position["Value"].y += modified_position["Carry"]
-				temp_tile_map.set_cell(0,modified_position["Value"],-1)
+				var is_destory2 = temp_tile_map.set_tile(0,modified_position["Value"],-1)
+				if is_destory2:
+					self.queue_free()
 		var tile_data = temp_tile_map.get_cell_tile_data(0,map_position)
 		if tile_data == null:
 			print("Null")
 		print(position,"原",map_position,"改",modified_position["Value"],"Carry",modified_position["Carry"],tile_data)
-		self.queue_free()
+		
