@@ -1,4 +1,4 @@
-class_name World
+class_name World_TileMap
 extends TileMap
 
 '''

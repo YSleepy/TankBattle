@@ -70,7 +70,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("Destory")
 	if body.is_in_group("World_Scenne"):
 		#Get TileMap,Find Bullet Position In Map
-		var temp_tile_map = body as World
+		var temp_tile_map = body as World_TileMap
 		var map_position = temp_tile_map.local_to_map(position)
 		#Modify map_position according direction
 		var modified_position:Dictionary = modify_bullet_map_position(map_position,bullet_dirction,position)

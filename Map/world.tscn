@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cisl8kpsbaa68"]
+[gd_scene load_steps=12 format=3 uid="uid://cisl8kpsbaa68"]
 
 [ext_resource type="Texture2D" uid="uid://duvvmwjjecuf8" path="res://Tank/tile.bmp" id="1_5gars"]
+[ext_resource type="Script" path="res://Map/World.gd" id="1_fpj0b"]
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_goxku"]
 [ext_resource type="PackedScene" uid="uid://debafnal7j0en" path="res://Pawn/player.tscn" id="2_awlym"]
-[ext_resource type="Script" path="res://Map/TileMap.gd" id="3_6aupt"]
 [ext_resource type="Texture2D" uid="uid://j15bajstf617" path="res://Tank/sprite.bmp" id="3_h8a1f"]
+[ext_resource type="Script" path="res://Map/WorldTileMap.gd" id="3_um85u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l74tx"]
 resource_local_to_scene = true
@@ -302,6 +303,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_j0x6m")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_fpj0b")
 
 [node name="World_Scenne" type="TileMap" parent="." groups=["World_Scenne"]]
 material = SubResource("ShaderMaterial_l74tx")
@@ -315,7 +317,7 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(1572870, 393216, 0, 1638406, 393216, 1, 1572871, 458752, 0, 1638407, 458752, 1, 1572886, 393216, 0, 1638422, 393216, 1, 1572887, 458752, 0, 1638423, 458752, 1, 1572879, 393216, 0, 1638415, 393216, 1)
-script = ExtResource("3_6aupt")
+script = ExtResource("3_um85u")
 
 [node name="Border" type="TileMap" parent="." groups=["Border"]]
 tile_set = SubResource("TileSet_616i5")
@@ -326,8 +328,3 @@ layer_0/tile_data = PackedInt32Array(65535, 1310720, 0, 131071, 1310720, 0, 1966
 position = Vector2(16, 354)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(208, 208)
-limit_left = -160
-limit_top = -215
-limit_right = 208
-limit_bottom = 208

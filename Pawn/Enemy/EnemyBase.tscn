@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://boh0pogtxxw5y"]
+
+[ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_3hq6s"]
+[ext_resource type="Script" path="res://Pawn/Enemy/EnemyBase.gd" id="1_c31fr"]
+[ext_resource type="Texture2D" uid="uid://l3fydptoqk0b" path="res://Tank/enemy.bmp" id="2_7eyln"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_715hl"]
+shader = ExtResource("1_3hq6s")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ojjt"]
+
+[sub_resource type="Animation" id="Animation_m3767"]
+resource_name = "Enemy_Walk_Up"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_nfrlv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xioch"]
+_data = {
+"Enemy_Walk_Up": SubResource("Animation_m3767"),
+"RESET": SubResource("Animation_nfrlv")
+}
+
+[node name="EnemyBase" type="CharacterBody2D"]
+script = ExtResource("1_c31fr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_715hl")
+texture = ExtResource("2_7eyln")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 112, 56, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7ojjt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xioch")
+}

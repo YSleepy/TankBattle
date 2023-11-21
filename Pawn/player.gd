@@ -6,8 +6,17 @@ var speed = 200  # 移动速度
 var facing_direction = Vector2(0,-1) #角色朝向
 var bullet_scene = preload("res://Pawn/Bullet/bullet.tscn")
 
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var spawn_animation: Sprite2D = $SpawnAimation
+@onready var spawn_animation_player: AnimationPlayer = $SpawnAnimationPlayer
+@onready var timer: Timer = $Timer
+
+
+
+func _ready() -> void:
+	spawn_animation_player.play("SpawnPlayer")
+	timer.connect("timeout",Callable(self,"_on_timer_timeout_stop_animation"))
+	timer.start()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Fire"):
@@ -56,3 +65,9 @@ func _process(delta):
 # 如果需要处理碰撞，你可以重写下面的方法
 # func _on_Collision_body_entered(body):
 #     # 处理碰撞逻辑
+
+
+func _on_timer_timeout_stop_animation():
+	spawn_animation_player.stop(true)
+	spawn_animation.visible = false
+	
