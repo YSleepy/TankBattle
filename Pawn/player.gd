@@ -53,12 +53,18 @@ func player_move():
 	move_and_slide()
 
 func fire():
+	# can instance bullet?
+	if get_parent().get_tree().get_nodes_in_group("Bullet").size()>=1:
+		print("buttle",get_parent().get_tree().get_nodes_in_group("Bullet").size())
+		return
 	# 创建子弹实例
 	var bullet_instance = bullet_scene.instantiate()
-	bullet_instance.set_property(position,facing_direction)
+	bullet_instance.set_property(Bullet.BulletOwner.Player1,position,facing_direction)
 	# 将子弹添加到场景中
 	get_parent().add_child(bullet_instance)
 	
+	
+@warning_ignore("unused_parameter")
 func _process(delta):
 	player_move()
 
