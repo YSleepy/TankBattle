@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://kq5oiq7imr2w" path="res://Map/World_Scenne.tscn" id="2_hul86"]
 [ext_resource type="PackedScene" uid="uid://dujwo1o5inu0g" path="res://Map/Border.tscn" id="4_o0n2o"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3qyqg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b83pj"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -13,7 +13,7 @@ shader = ExtResource("1_goxku")
 script = ExtResource("1_fpj0b")
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_3qyqg")
+material = SubResource("ShaderMaterial_b83pj")
 
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 

@@ -6,6 +6,8 @@ var speed = 200  # 移动速度
 var facing_direction = Vector2(0,-1) #角色朝向
 var bullet_scene = preload("res://Pawn/Bullet/bullet.tscn")
 
+var cant_fire:bool = false
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var spawn_animation: Sprite2D = $SpawnAimation
 @onready var spawn_animation_player: AnimationPlayer = $SpawnAnimationPlayer
@@ -22,9 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Fire"):
 		fire()
 
-
 # TODO 未优化输入
-
 
 func player_move():
 	var horizontal_input = Input.get_action_strength("Walk_Right") - Input.get_action_strength("Walk_Left")
@@ -52,13 +52,18 @@ func player_move():
 	velocity.y = vertical_velocity
 	move_and_slide()
 
-func fire():
+func can_fire()->void :
+	cant_fire = false
+
+func fire()->void :
 	# can instance bullet?
-	if get_parent().get_tree().get_nodes_in_group("Bullet").size()>=1:
+	if cant_fire:
 		print("buttle",get_parent().get_tree().get_nodes_in_group("Bullet").size())
 		return
 	# 创建子弹实例
+	cant_fire = true
 	var bullet_instance = bullet_scene.instantiate()
+	bullet_instance.connect("bullet_queue_free",Callable(self,"can_fire"))
 	bullet_instance.set_property(Bullet.BulletOwner.Player1,position,facing_direction)
 	# 将子弹添加到场景中
 	get_parent().add_child(bullet_instance)
