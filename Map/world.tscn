@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cisl8kpsbaa68"]
+[gd_scene load_steps=9 format=3 uid="uid://cisl8kpsbaa68"]
 
 [ext_resource type="Script" path="res://Map/World.gd" id="1_fpj0b"]
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_goxku"]
 [ext_resource type="PackedScene" uid="uid://kq5oiq7imr2w" path="res://Map/World_Scenne.tscn" id="2_hul86"]
 [ext_resource type="PackedScene" uid="uid://dujwo1o5inu0g" path="res://Map/Border.tscn" id="4_o0n2o"]
+[ext_resource type="PackedScene" uid="uid://cm8cmylpes31b" path="res://Map/SpawnEnemyToMap/EnemyFactory.tscn" id="5_x8snp"]
+[ext_resource type="PackedScene" uid="uid://cwjrkp5o6lbpa" path="res://Pawn/Enemy/Enemy/EnemyNormal/EnemyNormal.tscn" id="6_o0wa6"]
+[ext_resource type="PackedScene" uid="uid://d1ds6vdpnw64e" path="res://Map/SpawnPlayerToMap/PlayerFactory.tscn" id="7_ro32s"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b83pj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir3p3"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -13,7 +16,8 @@ shader = ExtResource("1_goxku")
 script = ExtResource("1_fpj0b")
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_b83pj")
+material = SubResource("ShaderMaterial_ir3p3")
+layer_0/tile_data = PackedInt32Array(1572864, 0, 0, 1638400, 0, 1, 1572865, 65536, 0, 1638401, 65536, 1, 1572866, 131072, 0, 1638402, 131072, 1, 1572867, 196608, 0, 1638403, 196608, 1, 1572868, 262144, 0, 1638404, 262144, 1, 1572869, 327680, 0, 1638405, 327680, 1, 1572870, 393216, 0, 1638406, 393216, 1, 1572871, 458752, 0, 1638407, 458752, 1, 1572872, 0, 0, 1638408, 0, 1, 1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1, 1572879, 393216, 0, 1638415, 393216, 1, 1572880, 0, 0, 1638416, 0, 1, 1572881, 65536, 0, 1638417, 65536, 1, 1572882, 131072, 0, 1638418, 131072, 1, 1572883, 196608, 0, 1638419, 196608, 1, 1572884, 262144, 0, 1638420, 262144, 1, 1572885, 327680, 0, 1638421, 327680, 1, 1572888, 524288, 0, 1638424, 524288, 1, 1572889, 589824, 0, 1638425, 589824, 1, 1245196, 524288, 0, 1245197, 589824, 0, 1245200, 524288, 1, 1245201, 589824, 1, 1245202, 655360, 0, 1245203, 720896, 0, 1245204, 655360, 1, 1245205, 720896, 1)
 
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
@@ -24,4 +28,17 @@ limit_top = -215
 limit_right = 208
 limit_bottom = 208
 
-[node name="Timer" type="Timer" parent="."]
+[node name="EnemyFactory" parent="." instance=ExtResource("5_x8snp")]
+position = Vector2(41, 20)
+metadata/SceneArray = [ExtResource("6_o0wa6")]
+
+[node name="EnemyFactory1" parent="." instance=ExtResource("5_x8snp")]
+position = Vector2(124, 20)
+metadata/SceneArray = [ExtResource("6_o0wa6")]
+
+[node name="EnemyFactory2" parent="." instance=ExtResource("5_x8snp")]
+position = Vector2(207, 20)
+metadata/SceneArray = [ExtResource("6_o0wa6")]
+
+[node name="PlayerFactory" parent="." instance=ExtResource("7_ro32s")]
+position = Vector2(160, 399)

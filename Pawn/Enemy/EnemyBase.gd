@@ -3,42 +3,66 @@ extends CharacterBody2D
 
 var res_bullet = preload("res://Pawn/Bullet/bullet.tscn")
 
+signal enemy_killed
 
 var health:int
-var speed:int
+var speed:int = 5000
+var smallest_per_frame_speed:float = 1
 var bullet:int
-var facing_direction:Vector2i = Vector2i(0,1)
+var facing_direction:Vector2i
+var pre_frame:Vector2
 
 var can_move:bool = false
-var cant_fire:bool = true
-
+var can_fire:bool = false
 
 @onready var sprite:Sprite2D =$Sprite2D
 @onready var spawn_sprite:Sprite2D =$SpawnSprite2D
 @onready var spawn_animation =$SpawnAnimation
-
+@onready var animation_player =$AnimationPlayer
+@onready var timer =$Timer
 
 func _ready() -> void:
 	#spawn_animation
 	spawn_animation.play("SpawnEnemy")
-	
+	facing_direction = get_meta("Direction_Down")as Vector2i
+	pre_frame = position
+
+func _process(delta: float) -> void:
+	if can_move:
+		auto_walk(delta)
+		print(delta)
+		update_animation_direction()
 
 func set_property()->void:
 	pass
 	
 
-func auto_walk()->void:
-	self.velocity.y=200
+func update_animation_direction():
+	match facing_direction:
+		Vector2i(0,1):sprite.set_region_rect(get_meta("EnemyRect_Down")as Rect2i)
+		Vector2i(0,-1):sprite.set_region_rect(get_meta("EnemyRect_Up")as Rect2i)
+		Vector2i(-1,0):sprite.set_region_rect(get_meta("EnemyRect_Left")as Rect2i)
+		Vector2i(1,0):sprite.set_region_rect(get_meta("EnemyRect_Right")as Rect2i)
+
+func auto_walk(delta:float = 0.01)->void:
+	if abs(pre_frame.x-position.x)<smallest_per_frame_speed&&abs(pre_frame.y-position.y)<smallest_per_frame_speed:
+		facing_direction = get_random_direction()
+		velocity = facing_direction*speed*delta
+	pre_frame = position
 	move_and_slide()
 	
+func set_can_fire()->void:
+	can_fire = true
+	
 func auto_fire()->void:
-		# can instance bullet?
 	# 创建子弹实例
-	var bullet_instance:Bullet = res_bullet.instantiate() as Bullet
-	bullet_instance.connect("bullet_queue_free",Callable(self,"call_deferred_auto_fire"))
-	bullet_instance.set_property(Bullet.BulletOwner.Enemy,position,facing_direction)
-	# 将子弹添加到场景中
-	get_parent().add_child(bullet_instance)
+	if can_fire:
+		var bullet_instance:Bullet = res_bullet.instantiate() as Bullet
+		bullet_instance.connect("bullet_queue_free",Callable(self,"set_can_fire"))
+		bullet_instance.set_property(Bullet.BulletOwner.Enemy,position,facing_direction)
+		can_fire = false
+		# 将子弹添加到场景中
+		get_parent().add_child(bullet_instance)
 	
 
 '''
@@ -54,21 +78,35 @@ EnemyBase.gd:41 @ auto_fire():
 直接调用方法去 修改secne_tree (添加、删除子节点)，处理图形碰撞等都会造成线程不安全
 理解为锁的问题。不允许查找的时候修改
 '''
+
 func call_deferred_auto_fire()->void:
 	call_deferred("auto_fire")
 	
 
 func killed()->void:
-	pass
-
-func _process(delta: float) -> void:
-	if can_move:
-		auto_walk()
+	emit_signal("enemy_killed")
 
 
 func _on_spawn_animation_animation_finished(anim_name: StringName) -> void:
-	spawn_sprite.visible=false
-	sprite.visible=true
-	can_move = true
-	auto_fire()
+	if anim_name == "SpawnEnemy":
+		spawn_sprite.visible=false
+		sprite.visible=true
+		can_move = true
+		can_fire = true
+		timer.connect("timeout",Callable(self,"call_deferred_auto_fire"))
+		timer.start()
+		
+
+func animation_play_walk(play_rect:Rect2)->void:
+	sprite.set_region_rect(play_rect)
+	animation_player.play("Enemy_Walk")
+
+func get_random_direction()->Vector2i:
+	var in_num = randi_range(1,4)
+	match in_num:
+		1:return get_meta("Direction_Up") as Vector2i
+		2:return get_meta("Direction_Down") as Vector2i
+		3:return get_meta("Direction_Left") as Vector2i
+		4:return get_meta("Direction_Right") as Vector2i
+	return Vector2i(0,1)
 

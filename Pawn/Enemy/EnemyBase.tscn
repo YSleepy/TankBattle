@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://boh0pogtxxw5y"]
+[gd_scene load_steps=15 format=3 uid="uid://boh0pogtxxw5y"]
 
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_3hq6s"]
 [ext_resource type="Script" path="res://Pawn/Enemy/EnemyBase.gd" id="1_c31fr"]
@@ -11,45 +11,8 @@ shader = ExtResource("1_3hq6s")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y23ru"]
 shader = ExtResource("1_3hq6s")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ojjt"]
-
-[sub_resource type="Animation" id="Animation_m3767"]
-resource_name = "Enemy_Walk_Up"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_nfrlv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xioch"]
-_data = {
-"Enemy_Walk_Up": SubResource("Animation_m3767"),
-"RESET": SubResource("Animation_nfrlv")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulcei"]
+size = Vector2(26, 26)
 
 [sub_resource type="Animation" id="Animation_20boi"]
 length = 0.001
@@ -88,38 +51,97 @@ _data = {
 "SpawnEnemy": SubResource("Animation_s4w2h")
 }
 
+[sub_resource type="Animation" id="Animation_gd013"]
+resource_name = "new_animation"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_ohc33"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnb8g"]
+_data = {
+"Enemy_Walk": SubResource("Animation_gd013"),
+"RESET": SubResource("Animation_ohc33")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p4lk"]
+size = Vector2(28, 28)
+
 [node name="EnemyBase" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_c31fr")
+metadata/EnemyRect_Up = Rect2(0, 112, 56, 28)
+metadata/EnemyRect_Down = Rect2(0, 168, 56, 28)
+metadata/EnemyRect_Left = Rect2(0, 196, 56, 28)
+metadata/EnemyRect_Right = Rect2(0, 140, 56, 28)
+metadata/Direction_Up = Vector2i(0, -1)
+metadata/Direction_Down = Vector2i(0, 1)
+metadata/Direction_Left = Vector2i(-1, 0)
+metadata/Direction_Right = Vector2i(1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_715hl")
 texture = ExtResource("2_7eyln")
 hframes = 2
 region_enabled = true
-region_rect = Rect2(0, 112, 56, 28)
+region_rect = Rect2(0, 196, 56, 28)
 
 [node name="SpawnSprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_y23ru")
+position = Vector2(9.53674e-07, 9.53674e-07)
+scale = Vector2(0.875, 0.875)
 texture = ExtResource("4_135lh")
 hframes = 6
 region_enabled = true
 region_rect = Rect2(256, 32, 192, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7ojjt")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xioch")
-}
+shape = SubResource("RectangleShape2D_ulcei")
 
 [node name="SpawnAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_0gn24")
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vnb8g")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2p4lk")
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="animation_finished" from="SpawnAnimation" to="." method="_on_spawn_animation_animation_finished"]

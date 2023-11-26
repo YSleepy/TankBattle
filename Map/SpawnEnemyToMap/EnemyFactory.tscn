@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm8cmylpes31b"]
+
+[ext_resource type="Script" path="res://Map/SpawnEnemyToMap/EnemyFactory.gd" id="1_cplmb"]
+
+[node name="SpawnEnemyPosition" type="Node2D"]
+script = ExtResource("1_cplmb")
+metadata/LargestExistNum = 0
+metadata/SceneArray = []

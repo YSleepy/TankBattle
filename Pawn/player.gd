@@ -58,7 +58,6 @@ func can_fire()->void :
 func fire()->void :
 	# can instance bullet?
 	if cant_fire:
-		print("buttle",get_parent().get_tree().get_nodes_in_group("Bullet").size())
 		return
 	# 创建子弹实例
 	cant_fire = true

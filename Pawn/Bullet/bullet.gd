@@ -42,7 +42,7 @@ func _process(delta) -> void:
 	position = current_position
 
 func modify_bullet_map_position(in_modify_position:Vector2i,in_dirction:Vector2,in_position:Vector2)->Dictionary:
-	var result:Dictionary
+	var result:Dictionary = {}
 
 	if in_dirction.x!=0:
 		#Modify y
@@ -59,7 +59,7 @@ func modify_bullet_map_position(in_modify_position:Vector2i,in_dirction:Vector2,
 			result["Carry"]=0
 	if in_dirction.y!=0:
 		#Modify x
-		print(in_position)
+		#print(in_position)
 		var temp_x = in_position.x/16
 		in_modify_position.x = int(temp_x)
 		result["Value"] = in_modify_position
@@ -76,7 +76,7 @@ func attack_Scenne_Border(body:Node2D)->void:
 	if body.is_in_group("Border"):
 		emit_signal("bullet_queue_free")
 		self.queue_free()
-		print("Destory")
+		#print("Destory")
 	if body.is_in_group("World_Scenne"):
 		#Get TileMap,Find Bullet Position In Map
 		var temp_tile_map = body as World_TileMap
@@ -89,7 +89,7 @@ func attack_Scenne_Border(body:Node2D)->void:
 			if is_destory1:
 				emit_signal("bullet_queue_free")
 				self.queue_free()
-			print(modified_position["Value"])
+			#print(modified_position["Value"])
 			if modified_position["Carry"]!=0:
 				modified_position["Value"].x += modified_position["Carry"]
 				var is_destory2 = temp_tile_map.set_tile(0,modified_position["Value"],-1)
@@ -107,10 +107,10 @@ func attack_Scenne_Border(body:Node2D)->void:
 				if is_destory2:
 					emit_signal("bullet_queue_free")
 					self.queue_free()
-		var tile_data = temp_tile_map.get_cell_tile_data(0,map_position)
-		if tile_data == null:
-			print("Null")
-		print(position,"原",map_position,"改",modified_position["Value"],"Carry",modified_position["Carry"],tile_data)
+		#var tile_data = temp_tile_map.get_cell_tile_data(0,map_position)
+		#if tile_data == null:
+			#print("Null")
+		#print(position,"原",map_position,"改",modified_position["Value"],"Carry",modified_position["Carry"],tile_data)
 		
 
 
