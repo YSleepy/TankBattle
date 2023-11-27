@@ -4,13 +4,15 @@ extends CharacterBody2D
 var res_bullet = preload("res://Pawn/Bullet/bullet.tscn")
 
 signal enemy_killed
+signal applied_damage(damage:int)
 
 var health:int
-var speed:int = 5000
-var smallest_per_frame_speed:float = 1
+var speed:int 
+var smallest_per_frame_speed:float
 var bullet:int
+
 var facing_direction:Vector2i
-var pre_frame:Vector2
+var pre_frame_position:Vector2
 
 var can_move:bool = false
 var can_fire:bool = false
@@ -25,12 +27,14 @@ func _ready() -> void:
 	#spawn_animation
 	spawn_animation.play("SpawnEnemy")
 	facing_direction = get_meta("Direction_Down")as Vector2i
-	pre_frame = position
+	health = get_meta("Health")as int
+	speed = get_meta("Speed")as int
+	smallest_per_frame_speed = get_meta("SmallestPerFrameSpeed")
+	pre_frame_position = position
 
 func _process(delta: float) -> void:
 	if can_move:
 		auto_walk(delta)
-		print(delta)
 		update_animation_direction()
 
 func set_property()->void:
@@ -45,10 +49,11 @@ func update_animation_direction():
 		Vector2i(1,0):sprite.set_region_rect(get_meta("EnemyRect_Right")as Rect2i)
 
 func auto_walk(delta:float = 0.01)->void:
-	if abs(pre_frame.x-position.x)<smallest_per_frame_speed&&abs(pre_frame.y-position.y)<smallest_per_frame_speed:
+	if abs(pre_frame_position.x-position.x)<smallest_per_frame_speed&&abs(pre_frame_position.y-position.y)<smallest_per_frame_speed:
+		print(pre_frame_position.x-position.x,pre_frame_position.y-position.y)
 		facing_direction = get_random_direction()
 		velocity = facing_direction*speed*delta
-	pre_frame = position
+	pre_frame_position = position
 	move_and_slide()
 	
 func set_can_fire()->void:
@@ -83,7 +88,14 @@ func call_deferred_auto_fire()->void:
 	call_deferred("auto_fire")
 	
 
+func apply_damage(damage:int):
+	health-=damage
+	emit_signal("applied_damage",damage)
+	if health==0:
+		killed()
+
 func killed()->void:
+	self.queue_free()
 	emit_signal("enemy_killed")
 
 

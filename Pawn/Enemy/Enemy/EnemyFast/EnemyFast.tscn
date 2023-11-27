@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca8llm0uktaxa"]
+
+[ext_resource type="PackedScene" uid="uid://boh0pogtxxw5y" path="res://Pawn/Enemy/EnemyBase.tscn" id="1_l2jgn"]
+[ext_resource type="Script" path="res://Pawn/Enemy/Enemy/EnemyFast/EnemyFast.gd" id="2_ia08s"]
+
+[node name="EnemyBase" instance=ExtResource("1_l2jgn")]
+script = ExtResource("2_ia08s")
+metadata/EnemyRect_Up = Rect2(112, 0, 56, 28)
+metadata/EnemyRect_Down = Rect2(112, 56, 56, 28)
+metadata/EnemyRect_Left = Rect2(112, 84, 56, 28)
+metadata/EnemyRect_Right = Rect2(112, 28, 56, 28)
+metadata/Health = 1
+metadata/Speed = 7000
+metadata/SmallestPerFrameSpeed = 1.0
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(112, 84, 56, 28)

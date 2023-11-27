@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b447vwfokk4or"]
+
+[ext_resource type="PackedScene" uid="uid://boh0pogtxxw5y" path="res://Pawn/Enemy/EnemyBase.tscn" id="1_gcap8"]
+[ext_resource type="Script" path="res://Pawn/Enemy/Enemy/EnemyHeavy/EnemyHeavy.gd" id="2_5frus"]
+
+[node name="EnemyBase" instance=ExtResource("1_gcap8")]
+script = ExtResource("2_5frus")
+metadata/EnemyRect_Up = Rect2(112, 84, 56, 28)
+metadata/EnemyRect_Down = Rect2(112, 84, 56, 28)
+metadata/EnemyRect_Left = Rect2(112, 84, 56, 28)
+metadata/EnemyRect_Right = Rect2(112, 84, 56, 28)

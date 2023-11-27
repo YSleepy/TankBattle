@@ -4,5 +4,5 @@
 
 [node name="SpawnEnemyPosition" type="Node2D"]
 script = ExtResource("1_cplmb")
-metadata/LargestExistNum = 0
+metadata/LargestExistNum = 1
 metadata/SceneArray = []
