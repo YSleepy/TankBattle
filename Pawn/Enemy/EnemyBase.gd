@@ -25,6 +25,7 @@ var can_fire:bool = false
 
 func _ready() -> void:
 	#spawn_animation
+	sprite.visible = false
 	spawn_animation.play("SpawnEnemy")
 	facing_direction = get_meta("Direction_Down")as Vector2i
 	health = get_meta("Health")as int

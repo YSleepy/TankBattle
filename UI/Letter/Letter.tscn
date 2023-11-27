@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmhl3ws2bxob8"]
+
+[ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_vax8p"]
+[ext_resource type="Texture2D" uid="uid://j15bajstf617" path="res://Tank/sprite.bmp" id="2_tjl54"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d4yd"]
+shader = ExtResource("1_vax8p")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tdssh"]
+texture = ExtResource("2_tjl54")
+0:62/0 = 0
+1:62/0 = 0
+2:62/0 = 0
+3:62/0 = 0
+4:62/0 = 0
+5:62/0 = 0
+6:62/0 = 0
+7:62/0 = 0
+8:62/0 = 0
+9:62/0 = 0
+10:62/0 = 0
+11:62/0 = 0
+12:62/0 = 0
+13:62/0 = 0
+14:62/0 = 0
+15:62/0 = 0
+16:62/0 = 0
+17:62/0 = 0
+18:62/0 = 0
+19:62/0 = 0
+20:62/0 = 0
+21:62/0 = 0
+22:62/0 = 0
+23:62/0 = 0
+24:62/0 = 0
+25:62/0 = 0
+0:63/0 = 0
+1:63/0 = 0
+2:63/0 = 0
+3:63/0 = 0
+4:63/0 = 0
+5:63/0 = 0
+6:63/0 = 0
+7:63/0 = 0
+8:63/0 = 0
+9:63/0 = 0
+10:63/0 = 0
+11:63/0 = 0
+12:63/0 = 0
+13:63/0 = 0
+14:63/0 = 0
+15:63/0 = 0
+16:63/0 = 0
+17:63/0 = 0
+18:63/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ke4tt"]
+sources/0 = SubResource("TileSetAtlasSource_tdssh")
+
+[node name="Letter" type="TileMap"]
+material = SubResource("ShaderMaterial_6d4yd")
+tile_set = SubResource("TileSet_ke4tt")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 62, 1, 65536, 62, 2, 917504, 62, 3, 1310720, 62, 4, 1245184, 62)

@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://bsstk0bmjj08o"]
+
+[ext_resource type="Script" path="res://UI/MainUi.gd" id="1_5se05"]
+[ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_x2gy5"]
+[ext_resource type="Texture2D" uid="uid://j15bajstf617" path="res://Tank/sprite.bmp" id="2_neai1"]
+[ext_resource type="PackedScene" uid="uid://bmhl3ws2bxob8" path="res://UI/Letter/Letter.tscn" id="3_ho63n"]
+[ext_resource type="PackedScene" uid="uid://cnp83pgcf60s7" path="res://UI/Button/XButton.tscn" id="4_jq6w8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yj6xx"]
+shader = ExtResource("1_x2gy5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mlmo"]
+shader = ExtResource("1_x2gy5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdjy2"]
+shader = ExtResource("1_x2gy5")
+
+[sub_resource type="Animation" id="Animation_632u2"]
+resource_name = "ButtonPlayer_Down"
+
+[sub_resource type="Animation" id="Animation_kd5ua"]
+resource_name = "EnterGame"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -416), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ewfow"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3gi3"]
+_data = {
+"ButtonPlayer_Down": SubResource("Animation_632u2"),
+"EnterGameSequence": SubResource("Animation_kd5ua"),
+"RESET": SubResource("Animation_ewfow")
+}
+
+[node name="Control" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1664.0
+offset_bottom = 1664.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5se05")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yj6xx")
+position = Vector2(208, 122)
+texture = ExtResource("2_neai1")
+region_enabled = true
+region_rect = Rect2(135, 275, 376, 136)
+
+[node name="Player" parent="." instance=ExtResource("4_jq6w8")]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 220.0
+offset_right = 281.0
+offset_bottom = 248.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Player"]
+material = SubResource("ShaderMaterial_2mlmo")
+position = Vector2(66, 14)
+texture = ExtResource("2_neai1")
+region_enabled = true
+region_rect = Rect2(324, 423, 124, 14)
+
+[node name="Players" parent="." instance=ExtResource("4_jq6w8")]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 266.0
+offset_right = 281.0
+offset_bottom = 294.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Players"]
+material = SubResource("ShaderMaterial_sdjy2")
+position = Vector2(74, 14)
+texture = ExtResource("2_neai1")
+region_enabled = true
+region_rect = Rect2(324, 455, 140, 14)
+
+[node name="About" parent="." instance=ExtResource("4_jq6w8")]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 319.0
+offset_right = 281.0
+offset_bottom = 347.0
+
+[node name="Letter" parent="About" instance=ExtResource("3_ho63n")]
+position = Vector2(33, 6)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 357.0
+offset_right = 416.0
+offset_bottom = 416.0
+
+[node name="Letter" parent="Label" instance=ExtResource("3_ho63n")]
+scale = Vector2(0.805, 0.805)
+layer_0/tile_data = PackedInt32Array(131072, 1179648, 63, 131073, 1507328, 62, 131074, 1179648, 62, 131075, 720896, 62, 131076, 262144, 62, 131077, 262144, 62, 131078, 983040, 62, 131079, 1572864, 62, 131080, 1114112, 63, 196608, 1179648, 63, 196609, 1048576, 62, 196610, 1048576, 62, 196611, 1114112, 63, 196612, 196608, 63, 196613, 196608, 63, 196614, 458752, 63, 196615, 131072, 63, 196616, 458752, 63, 196617, 458752, 63, 196618, 458752, 63, 196619, 65536, 63, 196620, 589824, 63, 196621, 458752, 63)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f3gi3")
+}
+
+[connection signal="button_down" from="Player" to="." method="_on_player_button_down"]

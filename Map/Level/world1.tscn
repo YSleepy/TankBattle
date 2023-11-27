@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dau8ws601x1ax"]
+
+[ext_resource type="PackedScene" uid="uid://cisl8kpsbaa68" path="res://Map/world.tscn" id="1_di3bf"]
+[ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="2_cl1ua"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6upr"]
+resource_local_to_scene = true
+shader = ExtResource("2_cl1ua")
+
+[node name="World" instance=ExtResource("1_di3bf")]
+
+[node name="World_Scenne" parent="." index="1"]
+material = SubResource("ShaderMaterial_l6upr")
+
+[node name="EnemyFactory" parent="." index="3"]
+position = Vector2(40, 20)

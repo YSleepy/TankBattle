@@ -79,7 +79,7 @@ func attack_Scenne_Border(body:Node2D)->void:
 		#print("Destory")
 	if body.is_in_group("World_Scenne"):
 		#Get TileMap,Find Bullet Position In Map
-		var temp_tile_map = body as World_TileMap
+		var temp_tile_map = body as WorldScene
 		var map_position = temp_tile_map.local_to_map(position)
 		#Modify map_position according direction
 		var modified_position:Dictionary = modify_bullet_map_position(map_position,bullet_dirction,position)
@@ -113,6 +113,14 @@ func attack_Scenne_Border(body:Node2D)->void:
 		#print(position,"原",map_position,"改",modified_position["Value"],"Carry",modified_position["Carry"],tile_data)
 		
 
+func attack_player_enemy_bullet(body:Node2D)->void:
+	if body.is_in_group("Player")&& self.bullet_owner==BulletOwner.Enemy:
+		pass
+	elif body.is_in_group("Enemy"):
+		if self.bullet_owner==BulletOwner.Player1:
+			pass
+		elif self.bullet_owner==BulletOwner.Player2:
+			pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	attack_Scenne_Border(body)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnp83pgcf60s7"]
+
+[ext_resource type="Script" path="res://UI/Button/XButton.gd" id="1_p0rwj"]
+
+[node name="Button" type="Button"]
+offset_right = 146.0
+offset_bottom = 28.0
+script = ExtResource("1_p0rwj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
