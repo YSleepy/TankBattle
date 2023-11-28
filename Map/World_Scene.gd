@@ -24,11 +24,12 @@ enum Enum_TileCanDestroy{
 const Per_Width = 16
 
 func _ready() -> void:
-	var tile_data = get_cell_tile_data(0,Vector2i(6,24))
-	var TileCanDestroy = tile_data.get_custom_data("TileCanDestroy")
-	print(TileCanDestroy)
+	pass
+#	var tile_data = get_cell_tile_data(0,Vector2i(6,24))
+#	var TileCanDestroy = tile_data.get_custom_data("TileCanDestroy")
+#	print(TileCanDestroy)
 
-func set_tile(layer: int, coords: Vector2i, source_id: int = -1) -> bool:
+func set_tile(in_bullet_owner: Bullet.BulletOwner,layer: int, coords: Vector2i, source_id: int = -1) -> bool:
 	# return can destory bullet
 	var tile_data = get_cell_tile_data(layer,coords)
 	if tile_data == null:
@@ -52,7 +53,9 @@ func set_tile(layer: int, coords: Vector2i, source_id: int = -1) -> bool:
 			return true
 			
 		Enum_TileCanDestroy.Iron:
-			# 打铁打不动
+			if in_bullet_owner != Bullet.BulletOwner.Enemy:
+				$AudioStreamPlayer.set_stream(get_meta("AttackIron"))
+				$AudioStreamPlayer.play()
 			return true
 			
 		Enum_TileCanDestroy.Target:

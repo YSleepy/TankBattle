@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ca8llm0uktaxa" path="res://Pawn/Enemy/Enemy/EnemyFast/EnemyFast.tscn" id="7_uusb5"]
 [ext_resource type="AudioStream" uid="uid://dlsflymud1d4e" path="res://Tank/sounds/gamestart.ogg" id="9_wh7iw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhwcb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhl8n"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -20,7 +20,7 @@ script = ExtResource("1_fpj0b")
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_yhwcb")
+material = SubResource("ShaderMaterial_hhl8n")
 layer_0/tile_data = PackedInt32Array(1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1)
 layer_1/tile_data = PackedInt32Array()
 
@@ -32,19 +32,19 @@ limit_right = 208
 limit_bottom = 208
 
 [node name="EnemyFactory" parent="." instance=ExtResource("5_x8snp")]
-position = Vector2(41, 20)
+position = Vector2(48, 16)
 metadata/SceneArray = [ExtResource("6_o0wa6")]
 
 [node name="EnemyFactory1" parent="." instance=ExtResource("5_x8snp")]
-position = Vector2(124, 20)
+position = Vector2(208, 16)
 metadata/SceneArray = [ExtResource("6_o0wa6")]
 
 [node name="EnemyFactory2" parent="." instance=ExtResource("5_x8snp")]
-position = Vector2(207, 20)
+position = Vector2(368, 16)
 metadata/SceneArray = [ExtResource("7_uusb5")]
 
 [node name="PlayerFactory" parent="." instance=ExtResource("7_ro32s")]
-position = Vector2(160, 399)
+position = Vector2(160, 400)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_wh7iw")

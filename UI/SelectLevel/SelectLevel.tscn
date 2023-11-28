@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg58q0jpfrw5k"]
+
+[ext_resource type="Script" path="res://UI/SelectLevel/SelectLevel.gd" id="1_rxh83"]
+
+[node name="SelectLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rxh83")

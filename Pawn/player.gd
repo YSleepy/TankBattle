@@ -2,8 +2,10 @@ class_name Player
 
 extends CharacterBody2D
 
+signal changed_facing_direction
+
 var speed = 200  # 移动速度
-var facing_direction = Vector2(0,-1) #角色朝向
+var facing_direction = Vector2i(0,-1) #角色朝向
 var bullet_scene = preload("res://Pawn/Bullet/bullet.tscn")
 
 var cant_fire:bool = false
@@ -17,6 +19,7 @@ var cant_fire:bool = false
 
 func _ready() -> void:
 	spawn_animation_player.play("SpawnPlayer")
+	connect("changed_facing_direction",Callable(self,"correction_position"))
 	timer.connect("timeout",Callable(self,"_on_timer_timeout_stop_animation"))
 	timer.start()
 
@@ -26,28 +29,36 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # TODO 未优化输入
 
+func correction_position()->void:
+	pass
+
+func update_facing_direction(in_direction:Vector2)->void:
+	if in_direction!=facing_direction:
+		facing_direction = in_direction
+		emit_signal("changed_facing_direction")
+
 func player_move():
 	var horizontal_input = Input.get_action_strength("Walk_Right") - Input.get_action_strength("Walk_Left")
 	var vertical_input = Input.get_action_strength("Walk_Down") - Input.get_action_strength("Walk_Up")
 	if horizontal_input>0:
 		vertical_input=0
 		animation_player.play("Walk_Right")
-		facing_direction =Vector2(1,0)
+		facing_direction =Vector2i(1,0)
 	elif horizontal_input<0:
 		vertical_input=0
 		animation_player.play("Walk_Left")
-		facing_direction = Vector2(-1,0)
+		facing_direction = Vector2i(-1,0)
 	var horizontal_velocity = horizontal_input * speed
 	velocity.x = horizontal_velocity
 	# 处理垂直移动
 	if vertical_input>0:
 		horizontal_input=0
 		animation_player.play("Walk_Down")
-		facing_direction= Vector2(0,1)
+		facing_direction= Vector2i(0,1)
 	elif vertical_input<0:
 		horizontal_input=0
 		animation_player.play("Walk_Up")
-		facing_direction=Vector2(0,-1)
+		facing_direction=Vector2i(0,-1)
 	var vertical_velocity = vertical_input * speed
 	velocity.y = vertical_velocity
 	move_and_slide()
@@ -61,6 +72,7 @@ func fire()->void :
 		return
 	# 创建子弹实例
 	cant_fire = true
+	$AudioStreamPlayer.play()
 	var bullet_instance = bullet_scene.instantiate()
 	bullet_instance.connect("bullet_queue_free",Callable(self,"can_fire"))
 	bullet_instance.set_property(Bullet.BulletOwner.Player1,position,facing_direction)

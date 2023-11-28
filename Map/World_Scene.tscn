@@ -1,12 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://kq5oiq7imr2w"]
+[gd_scene load_steps=12 format=3 uid="uid://kq5oiq7imr2w"]
 
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_wer3h"]
 [ext_resource type="Texture2D" uid="uid://duvvmwjjecuf8" path="res://Tank/tile.bmp" id="2_ujy03"]
 [ext_resource type="Script" path="res://Map/World_Scene.gd" id="3_1b23j"]
+[ext_resource type="Texture2D" uid="uid://4ym81mershsa" path="res://Tank/Water.tres" id="3_025td"]
+[ext_resource type="AudioStream" uid="uid://mr70yq7q6qft" path="res://Tank/sounds/2/bullet_hit_1.ogg" id="5_37qio"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l74tx"]
 resource_local_to_scene = true
 shader = ExtResource("1_wer3h")
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_3wulm"]
+tile_data = PackedInt32Array(0, 524288, 0, 65536, 524288, 1, 1, 589824, 0, 65537, 589824, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_w7op5"]
+tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 1, 1, 0, 65537, 1, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xesrr"]
 resource_name = "Map"
@@ -96,6 +104,7 @@ texture = ExtResource("2_ujy03")
 4:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_2/angular_velocity = 0.0
 4:0/0/custom_data_0 = 2
+4:0/0/custom_data_1 = 3
 5:0/0 = 0
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
@@ -105,6 +114,7 @@ texture = ExtResource("2_ujy03")
 5:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_2/angular_velocity = 0.0
 5:0/0/custom_data_0 = 2
+5:0/0/custom_data_1 = 3
 4:1/0 = 0
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
@@ -114,6 +124,7 @@ texture = ExtResource("2_ujy03")
 4:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_2/angular_velocity = 0.0
 4:1/0/custom_data_0 = 2
+4:1/0/custom_data_1 = 3
 5:1/0 = 0
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
@@ -123,6 +134,7 @@ texture = ExtResource("2_ujy03")
 5:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_2/angular_velocity = 0.0
 5:1/0/custom_data_0 = 2
+5:1/0/custom_data_1 = 3
 6:0/0 = 0
 6:0/0/z_index = 1
 6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -203,6 +215,7 @@ texture = ExtResource("2_ujy03")
 12:1/0/physics_layer_2/angular_velocity = 0.0
 12:1/0/custom_data_0 = 5
 12:1/0/custom_data_1 = 1
+8:0/next_alternative_id = 5
 8:0/0 = 0
 8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_0/angular_velocity = 0.0
@@ -212,6 +225,7 @@ texture = ExtResource("2_ujy03")
 8:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_2/angular_velocity = 0.0
 8:0/0/custom_data_0 = 4
+9:0/next_alternative_id = 2
 9:0/0 = 0
 9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_0/angular_velocity = 0.0
@@ -221,6 +235,7 @@ texture = ExtResource("2_ujy03")
 9:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_2/angular_velocity = 0.0
 9:0/0/custom_data_0 = 4
+9:1/next_alternative_id = 2
 9:1/0 = 0
 9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:1/0/physics_layer_0/angular_velocity = 0.0
@@ -230,6 +245,8 @@ texture = ExtResource("2_ujy03")
 9:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 9:1/0/physics_layer_2/angular_velocity = 0.0
 9:1/0/custom_data_0 = 4
+10:1/next_alternative_id = 2
+10:1/animation_speed = 2.0
 10:1/0 = 0
 10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:1/0/physics_layer_0/angular_velocity = 0.0
@@ -239,6 +256,8 @@ texture = ExtResource("2_ujy03")
 10:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 10:1/0/physics_layer_2/angular_velocity = 0.0
 10:1/0/custom_data_0 = 4
+11:1/next_alternative_id = 2
+11:1/animation_speed = 2.0
 11:1/0 = 0
 11:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:1/0/physics_layer_0/angular_velocity = 0.0
@@ -248,6 +267,8 @@ texture = ExtResource("2_ujy03")
 11:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 11:1/0/physics_layer_2/angular_velocity = 0.0
 11:1/0/custom_data_0 = 4
+11:0/next_alternative_id = 2
+11:0/animation_speed = 2.0
 11:0/0 = 0
 11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:0/0/physics_layer_0/angular_velocity = 0.0
@@ -257,6 +278,8 @@ texture = ExtResource("2_ujy03")
 11:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 11:0/0/physics_layer_2/angular_velocity = 0.0
 11:0/0/custom_data_0 = 4
+10:0/next_alternative_id = 3
+10:0/animation_speed = 2.0
 10:0/0 = 0
 10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:0/0/physics_layer_0/angular_velocity = 0.0
@@ -266,6 +289,7 @@ texture = ExtResource("2_ujy03")
 10:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 10:0/0/physics_layer_2/angular_velocity = 0.0
 10:0/0/custom_data_0 = 4
+8:1/next_alternative_id = 3
 8:1/0 = 0
 8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:1/0/physics_layer_0/angular_velocity = 0.0
@@ -275,6 +299,21 @@ texture = ExtResource("2_ujy03")
 8:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 8:1/0/physics_layer_2/angular_velocity = 0.0
 8:1/0/custom_data_0 = 4
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m2ooo"]
+texture = ExtResource("3_025td")
+0:0/next_alternative_id = 3
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_2/angular_velocity = 0.0
+0:0/0/custom_data_0 = 4
 
 [sub_resource type="TileSet" id="TileSet_bki5u"]
 physics_layer_0/collision_layer = 1
@@ -288,12 +327,15 @@ custom_data_layer_0/type = 2
 custom_data_layer_1/name = "Hardness"
 custom_data_layer_1/type = 2
 sources/0 = SubResource("TileSetAtlasSource_xesrr")
+sources/1 = SubResource("TileSetAtlasSource_m2ooo")
+pattern_0 = SubResource("TileMapPattern_3wulm")
+pattern_1 = SubResource("TileMapPattern_w7op5")
 
 [node name="World_Scenne" type="TileMap" groups=["World_Scenne"]]
 material = SubResource("ShaderMaterial_l74tx")
 tile_set = SubResource("TileSet_bki5u")
 format = 2
-layer_0/tile_data = PackedInt32Array(1572864, 0, 0, 1638400, 0, 1, 1572865, 65536, 0, 1638401, 65536, 1, 1572866, 131072, 0, 1638402, 131072, 1, 1572867, 196608, 0, 1638403, 196608, 1, 1572868, 262144, 0, 1638404, 262144, 1, 1572869, 327680, 0, 1638405, 327680, 1, 1572870, 393216, 0, 1638406, 393216, 1, 1572871, 458752, 0, 1638407, 458752, 1, 1572872, 0, 0, 1638408, 0, 1, 1572873, 65536, 0, 1638409, 65536, 1, 1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1, 1572879, 393216, 0, 1638415, 393216, 1, 1572880, 0, 0, 1638416, 0, 1, 1572881, 65536, 0, 1638417, 65536, 1, 1572882, 131072, 0, 1638418, 131072, 1, 1572883, 196608, 0, 1638419, 196608, 1, 1572884, 262144, 0, 1638420, 262144, 1, 1572885, 327680, 0, 1638421, 327680, 1, 1572888, 524288, 0, 1638424, 524288, 1, 1572889, 589824, 0, 1638425, 589824, 1, 1245196, 524288, 0, 1245197, 589824, 0, 1245200, 524288, 1, 1245201, 589824, 1, 1245202, 655360, 0, 1245203, 720896, 0, 1245204, 655360, 1, 1245205, 720896, 1, 1441800, 524288, 0, 1507336, 524288, 1, 1441801, 589824, 0, 1507337, 589824, 1)
+layer_0/tile_data = PackedInt32Array(1572864, 0, 0, 1638400, 0, 1, 1572865, 65536, 0, 1638401, 65536, 1, 1572866, 131072, 0, 1638402, 131072, 1, 1572867, 196608, 0, 1638403, 196608, 1, 1572868, 262144, 0, 1638404, 262144, 1, 1572869, 327680, 0, 1638405, 327680, 1, 1572870, 393216, 0, 1638406, 393216, 1, 1572871, 458752, 0, 1638407, 458752, 1, 1572872, 0, 0, 1638408, 0, 1, 1572873, 65536, 0, 1638409, 65536, 1, 1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1, 1572879, 393216, 0, 1638415, 393216, 1, 1572880, 0, 0, 1638416, 0, 1, 1572881, 65536, 0, 1638417, 65536, 1, 1572882, 131072, 0, 1638418, 131072, 1, 1572883, 196608, 0, 1638419, 196608, 1, 1572884, 262144, 0, 1638420, 262144, 1, 1572885, 327680, 0, 1638421, 327680, 1, 1572888, 524288, 0, 1638424, 524288, 1, 1572889, 589824, 0, 1638425, 589824, 1, 1310738, 1, 0, 1376274, 1, 0, 1310739, 1, 0, 1376275, 1, 0)
 layer_1/name = ""
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -302,3 +344,6 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(1572870, 393216, 0, 1638406, 393216, 1, 1572871, 458752, 0, 1638407, 458752, 1, 1572886, 393216, 0, 1638422, 393216, 1, 1572887, 458752, 0, 1638423, 458752, 1, 1572879, 393216, 0, 1638415, 393216, 1)
 script = ExtResource("3_1b23j")
+metadata/AttackIron = ExtResource("5_37qio")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

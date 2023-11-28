@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce61hgc2nqhf1"]
+
+[ext_resource type="Script" path="res://Tool/RenderTexture.gd" id="1_jsi2o"]
+
+[node name="RenderTexture" type="Node2D"]
+script = ExtResource("1_jsi2o")
