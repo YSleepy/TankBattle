@@ -27,6 +27,7 @@ func make_enemy():
 	if enemy_nums>0&&current_exist_num<=largest_exist_num:
 		var current_scene:PackedScene = scene_array.pop_back()as PackedScene
 		var current_scene_instance:EnemyBase = current_scene.instantiate() as EnemyBase
+		enemy_nums-=1
 		current_scene_instance.position = self.position
 		current_scene_instance.connect("enemy_killed",Callable(self,"on_enemy_killed_make_enemy"))
 		current_exist_num+=1

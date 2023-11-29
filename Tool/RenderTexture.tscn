@@ -4,3 +4,5 @@
 
 [node name="RenderTexture" type="Node2D"]
 script = ExtResource("1_jsi2o")
+
+[node name="Timer" type="Timer" parent="."]

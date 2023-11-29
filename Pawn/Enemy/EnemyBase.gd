@@ -51,7 +51,6 @@ func update_animation_direction():
 
 func auto_walk(delta:float = 0.01)->void:
 	if abs(pre_frame_position.x-position.x)<smallest_per_frame_speed&&abs(pre_frame_position.y-position.y)<smallest_per_frame_speed:
-		print(pre_frame_position.x-position.x,pre_frame_position.y-position.y)
 		facing_direction = get_random_direction()
 		velocity = facing_direction*speed*delta
 	pre_frame_position = position
@@ -88,12 +87,21 @@ EnemyBase.gd:41 @ auto_fire():
 func call_deferred_auto_fire()->void:
 	call_deferred("auto_fire")
 	
+func play_fire_sound(in_metadata_path:String)->void:
+	var sound_player:AudioStreamPlayer = AudioStreamPlayer.new()
+	get_parent().add_child(sound_player)
+	sound_player.finished.connect(func():sound_player.queue_free())
+	sound_player.set_stream(get_meta(in_metadata_path))
+	sound_player.play()
 
 func apply_damage(damage:int):
 	health-=damage
 	emit_signal("applied_damage",damage)
 	if health==0:
+		play_fire_sound("KilledEnemy")
 		killed()
+	else :
+		play_fire_sound("AttackEnemy")
 
 func killed()->void:
 	self.queue_free()

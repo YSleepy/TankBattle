@@ -4,5 +4,5 @@
 
 [node name="PlayerFactory" type="Node2D"]
 script = ExtResource("1_mkegf")
-metadata/PlayTotalNum = 0
+metadata/PlayTotalNum = 3
 metadata/FactoryId = 0

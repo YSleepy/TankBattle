@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ca8llm0uktaxa" path="res://Pawn/Enemy/Enemy/EnemyFast/EnemyFast.tscn" id="7_uusb5"]
 [ext_resource type="AudioStream" uid="uid://dlsflymud1d4e" path="res://Tank/sounds/gamestart.ogg" id="9_wh7iw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhl8n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2aipb"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -20,7 +20,7 @@ script = ExtResource("1_fpj0b")
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_hhl8n")
+material = SubResource("ShaderMaterial_2aipb")
 layer_0/tile_data = PackedInt32Array(1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1)
 layer_1/tile_data = PackedInt32Array()
 

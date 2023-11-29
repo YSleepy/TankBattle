@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://boh0pogtxxw5y"]
+[gd_scene load_steps=17 format=3 uid="uid://boh0pogtxxw5y"]
 
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_3hq6s"]
 [ext_resource type="Script" path="res://Pawn/Enemy/EnemyBase.gd" id="1_c31fr"]
 [ext_resource type="Texture2D" uid="uid://l3fydptoqk0b" path="res://Tank/enemy.bmp" id="2_7eyln"]
+[ext_resource type="AudioStream" uid="uid://csj4mhj0gkr3b" path="res://Tank/sounds/2/explosion_1.ogg" id="2_tlh40"]
+[ext_resource type="AudioStream" uid="uid://vs3oydaq8kpf" path="res://Tank/sounds/2/bullet_shot.ogg" id="3_sxibe"]
 [ext_resource type="Texture2D" uid="uid://j15bajstf617" path="res://Tank/sprite.bmp" id="4_135lh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_715hl"]
@@ -107,6 +109,8 @@ metadata/Direction_Right = Vector2i(1, 0)
 metadata/Health = 0
 metadata/Speed = 0
 metadata/SmallestPerFrameSpeed = 0.0
+metadata/KilledEnemy = ExtResource("2_tlh40")
+metadata/AttackEnemy = ExtResource("3_sxibe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_715hl")

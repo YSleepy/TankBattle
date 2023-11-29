@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://debafnal7j0en"]
+[gd_scene load_steps=19 format=3 uid="uid://debafnal7j0en"]
 
 [ext_resource type="Texture2D" uid="uid://vgkralw2caaw" path="res://Tank/player1.bmp" id="1_cg1xa"]
 [ext_resource type="Script" path="res://Pawn/player.gd" id="1_kt2e2"]
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="2_bor6c"]
+[ext_resource type="AudioStream" uid="uid://d2yovn7ejdxpr" path="res://Tank/sounds/2/explosion_2.ogg" id="3_3kypy"]
 [ext_resource type="Texture2D" uid="uid://j15bajstf617" path="res://Tank/sprite.bmp" id="4_7qsmh"]
 [ext_resource type="AudioStream" uid="uid://cq0p33aaxanc0" path="res://Tank/sounds/fire.ogg" id="5_38j7n"]
 
@@ -270,6 +271,8 @@ _data = {
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_kt2e2")
+metadata/FireSound = ExtResource("5_38j7n")
+metadata/PlayerKilled = ExtResource("3_3kypy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l3x0a")

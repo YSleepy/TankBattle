@@ -11,7 +11,7 @@ signal bullet_queue_free
 
 var bullet_speed = 300
 var bullet_dirction : Vector2 = Vector2.ZERO
-var bullet_widght = 6
+var bullet_damage:int = 1
 var animation_player: AnimationPlayer
 var bullet_owner:BulletOwner 
 
@@ -91,7 +91,7 @@ func attack_Scenne_Border(body:Node2D)->void:
 		var modified_position:Dictionary = modify_bullet_map_position(map_position,bullet_dirction,position)
 		
 		if modified_position["Modify"]=="x":
-			var is_destory1 = temp_tile_map.set_tile(bullet_owner,0,modified_position["Value"],-1)
+			var is_destory1 = temp_tile_map.set_tile(bullet_owner,bullet_damage,0,modified_position["Value"],-1)
 			if is_destory1:
 				emit_signal("bullet_queue_free")
 				play_burst_effect()
@@ -99,39 +99,42 @@ func attack_Scenne_Border(body:Node2D)->void:
 			#print(modified_position["Value"])
 			if modified_position["Carry"]!=0:
 				modified_position["Value"].x += modified_position["Carry"]
-				var is_destory2 = temp_tile_map.set_tile(bullet_owner,0,modified_position["Value"],-1)
+				var is_destory2 = temp_tile_map.set_tile(bullet_owner,bullet_damage,0,modified_position["Value"],-1)
 				if is_destory2:
 					emit_signal("bullet_queue_free")
 					play_burst_effect()
 
 		if modified_position["Modify"]=="y":
-			var is_destory1 = temp_tile_map.set_tile(bullet_owner,0,modified_position["Value"],-1)
+			var is_destory1 = temp_tile_map.set_tile(bullet_owner,bullet_damage,0,modified_position["Value"],-1)
 			if is_destory1:
 				emit_signal("bullet_queue_free")
 				play_burst_effect()
 			if modified_position["Carry"]!=0:
 				modified_position["Value"].y += modified_position["Carry"]
-				var is_destory2 = temp_tile_map.set_tile(bullet_owner,0,modified_position["Value"],-1)
+				var is_destory2 = temp_tile_map.set_tile(bullet_owner,bullet_damage,0,modified_position["Value"],-1)
 				if is_destory2:
 					emit_signal("bullet_queue_free")
 					play_burst_effect()
-		#var tile_data = temp_tile_map.get_cell_tile_data(0,map_position)
-		#if tile_data == null:
-			#print("Null")
-		#print(position,"原",map_position,"改",modified_position["Value"],"Carry",modified_position["Carry"],tile_data)
-		
+
 
 func attack_player_enemy_bullet(body:Node2D)->void:
 	if body.is_in_group("Player")&& self.bullet_owner==BulletOwner.Enemy:
-		pass
+		(body as Player).killed_player()
+		emit_signal("bullet_queue_free")
+		play_burst_effect()
 	elif body.is_in_group("Enemy"):
 		if self.bullet_owner==BulletOwner.Player1:
-			pass
+			(body as EnemyBase).apply_damage(bullet_damage)
+			emit_signal("bullet_queue_free")
+			play_burst_effect()
 		elif self.bullet_owner==BulletOwner.Player2:
-			pass
+			(body as EnemyBase).apply_damage(bullet_damage)
+			emit_signal("bullet_queue_free")
+			play_burst_effect()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	attack_Scenne_Border(body)
+	attack_player_enemy_bullet(body)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

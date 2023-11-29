@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckaalw2bdw4ok"]
+
+[ext_resource type="Script" path="res://Manager/Manager.gd" id="1_1v8fa"]
+
+[node name="Manager" type="CanvasLayer"]
+script = ExtResource("1_1v8fa")

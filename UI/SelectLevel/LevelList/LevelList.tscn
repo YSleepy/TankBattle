@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c778oiglpnw4a"]
+
+[ext_resource type="Script" path="res://UI/SelectLevel/LevelList/LevelList.gd" id="1_k4kxa"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 836.0
+offset_bottom = 416.0
+script = ExtResource("1_k4kxa")

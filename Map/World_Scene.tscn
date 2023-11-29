@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://kq5oiq7imr2w"]
+[gd_scene load_steps=13 format=3 uid="uid://kq5oiq7imr2w"]
 
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_wer3h"]
 [ext_resource type="Texture2D" uid="uid://duvvmwjjecuf8" path="res://Tank/tile.bmp" id="2_ujy03"]
 [ext_resource type="Script" path="res://Map/World_Scene.gd" id="3_1b23j"]
 [ext_resource type="Texture2D" uid="uid://4ym81mershsa" path="res://Tank/Water.tres" id="3_025td"]
 [ext_resource type="AudioStream" uid="uid://mr70yq7q6qft" path="res://Tank/sounds/2/bullet_hit_1.ogg" id="5_37qio"]
+[ext_resource type="AudioStream" uid="uid://yhjn60qryipv" path="res://Tank/sounds/2/bullet_hit_2.ogg" id="6_sak5j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l74tx"]
 resource_local_to_scene = true
@@ -345,5 +346,9 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(1572870, 393216, 0, 1638406, 393216, 1, 1572871, 458752, 0, 1638407, 458752, 1, 1572886, 393216, 0, 1638422, 393216, 1, 1572887, 458752, 0, 1638423, 458752, 1, 1572879, 393216, 0, 1638415, 393216, 1)
 script = ExtResource("3_1b23j")
 metadata/AttackIron = ExtResource("5_37qio")
+metadata/AttackRock = ExtResource("5_37qio")
+metadata/AttackRock2 = ExtResource("6_sak5j")
+metadata/AttackBrick = ExtResource("6_sak5j")
+metadata/AttackIron2 = ExtResource("6_sak5j")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

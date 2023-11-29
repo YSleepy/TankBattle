@@ -3,6 +3,7 @@ class_name Player
 extends CharacterBody2D
 
 signal changed_facing_direction
+signal killed
 
 var speed = 200  # 移动速度
 var facing_direction = Vector2i(0,-1) #角色朝向
@@ -63,6 +64,13 @@ func player_move():
 	velocity.y = vertical_velocity
 	move_and_slide()
 
+func play_fire_sound(in_metadata_path:String)->void:
+	var sound_player:AudioStreamPlayer = AudioStreamPlayer.new()
+	get_parent().add_child(sound_player)
+	sound_player.finished.connect(func():sound_player.queue_free())
+	sound_player.set_stream(get_meta(in_metadata_path))
+	sound_player.play()
+
 func can_fire()->void :
 	cant_fire = false
 
@@ -72,7 +80,7 @@ func fire()->void :
 		return
 	# 创建子弹实例
 	cant_fire = true
-	$AudioStreamPlayer.play()
+	play_fire_sound("FireSound")
 	var bullet_instance = bullet_scene.instantiate()
 	bullet_instance.connect("bullet_queue_free",Callable(self,"can_fire"))
 	bullet_instance.set_property(Bullet.BulletOwner.Player1,position,facing_direction)
@@ -84,12 +92,16 @@ func fire()->void :
 func _process(delta):
 	player_move()
 
-# 如果需要处理碰撞，你可以重写下面的方法
-# func _on_Collision_body_entered(body):
-#     # 处理碰撞逻辑
-
 
 func _on_timer_timeout_stop_animation():
 	spawn_animation_player.stop(true)
 	spawn_animation.visible = false
 	
+
+func killed_player()->void:
+	set_process(false)
+	play_fire_sound("PlayerKilled")
+	emit_signal("killed")
+	queue_free()
+
+

@@ -29,7 +29,13 @@ func _ready() -> void:
 #	var TileCanDestroy = tile_data.get_custom_data("TileCanDestroy")
 #	print(TileCanDestroy)
 
-func set_tile(in_bullet_owner: Bullet.BulletOwner,layer: int, coords: Vector2i, source_id: int = -1) -> bool:
+func play_sound(in_bullet_owner: Bullet.BulletOwner,in_metadata_path:String)->void:
+	if in_bullet_owner != Bullet.BulletOwner.Enemy:
+		$AudioStreamPlayer.set_stream(get_meta(in_metadata_path))
+		$AudioStreamPlayer.play()
+
+
+func set_tile(in_bullet_owner: Bullet.BulletOwner,in_damage:int,layer: int, coords: Vector2i, source_id: int = -1) -> bool:
 	# return can destory bullet
 	var tile_data = get_cell_tile_data(layer,coords)
 	if tile_data == null:
@@ -39,23 +45,28 @@ func set_tile(in_bullet_owner: Bullet.BulletOwner,layer: int, coords: Vector2i, 
 		Enum_TileCanDestroy.Rock:
 			# 石头需要两下
 			var hardness = tile_data.get_custom_data("Hardness")as int
-			hardness -= 1
-			if hardness == 0:
+			hardness -= in_damage
+			if hardness <= 0:
+				play_sound(in_bullet_owner,"AttackRock2")
 				self.set_cell(layer,coords,source_id)
 				return true
 			else:
+				play_sound(in_bullet_owner,"AttackRock")
 				tile_data.set_custom_data("Hardness",hardness)
 				return true
 
 		Enum_TileCanDestroy.Brick:
 			# 砖头需要一下
+			play_sound(in_bullet_owner,"AttackBrick")
 			self.set_cell(layer,coords,source_id)
 			return true
 			
 		Enum_TileCanDestroy.Iron:
-			if in_bullet_owner != Bullet.BulletOwner.Enemy:
-				$AudioStreamPlayer.set_stream(get_meta("AttackIron"))
-				$AudioStreamPlayer.play()
+			# 铁块
+			if in_damage>=3:
+				self.set_cell(layer,coords,source_id)
+				play_sound(in_bullet_owner,"AttackIron2")
+			play_sound(in_bullet_owner,"AttackIron")
 			return true
 			
 		Enum_TileCanDestroy.Target:

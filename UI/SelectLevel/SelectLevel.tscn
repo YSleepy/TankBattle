@@ -1,8 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg58q0jpfrw5k"]
+[gd_scene load_steps=6 format=3 uid="uid://dg58q0jpfrw5k"]
 
 [ext_resource type="Script" path="res://UI/SelectLevel/SelectLevel.gd" id="1_rxh83"]
+[ext_resource type="PackedScene" uid="uid://cnp83pgcf60s7" path="res://UI/Button/XButton.tscn" id="2_sekrr"]
+[ext_resource type="PackedScene" uid="uid://c778oiglpnw4a" path="res://UI/SelectLevel/LevelList/LevelList.tscn" id="3_ibwci"]
+[ext_resource type="PackedScene" uid="uid://dujwo1o5inu0g" path="res://Map/Border.tscn" id="3_necal"]
+[ext_resource type="PackedScene" uid="uid://bmhl3ws2bxob8" path="res://UI/Letter/Letter.tscn" id="4_ffc5p"]
 
 [node name="SelectLevel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rxh83")
+
+[node name="Play" parent="." instance=ExtResource("2_sekrr")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 366.855
+offset_right = 296.0
+offset_bottom = 394.855
+
+[node name="Letter" parent="Play" instance=ExtResource("4_ffc5p")]
+position = Vector2(-5, 6)
+layer_0/tile_data = PackedInt32Array(2, 983040, 62, 4, 720896, 62, 6, 0, 62, 8, 1572864, 62)
+
+[node name="Pre" parent="." instance=ExtResource("2_sekrr")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 337.0
+offset_right = 194.0
+offset_bottom = 357.0
+
+[node name="Letter" parent="Pre" instance=ExtResource("4_ffc5p")]
+position = Vector2(8.345, 2.005)
+layer_0/tile_data = PackedInt32Array(0, 983040, 62, 1, 1114112, 62, 2, 262144, 62)
+
+[node name="Next" parent="." instance=ExtResource("2_sekrr")]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 337.0
+offset_right = 297.0
+offset_bottom = 357.0
+
+[node name="Letter" parent="Next" instance=ExtResource("4_ffc5p")]
+position = Vector2(0.245, 2.025)
+layer_0/tile_data = PackedInt32Array(0, 851968, 62, 1, 262144, 62, 2, 1507328, 62, 3, 1245184, 62)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+offset_left = 130.0
+offset_top = 105.0
+offset_right = 550.0
+offset_bottom = 530.0
+scale = Vector2(0.395, 0.395)
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" parent="ScrollContainer" instance=ExtResource("3_ibwci")]
+layout_mode = 2
+
+[node name="Border" parent="." instance=ExtResource("3_necal")]
+position = Vector2(130, 105)
+scale = Vector2(0.4, 0.4)
+
+[node name="Letter" parent="." instance=ExtResource("4_ffc5p")]
+position = Vector2(119.515, 58.13)
+layer_0/tile_data = PackedInt32Array(0, 1179648, 62, 1, 262144, 62, 2, 720896, 62, 3, 262144, 62, 4, 131072, 62, 5, 1245184, 62, 7, 720896, 62, 8, 262144, 62, 9, 1376256, 62, 10, 262144, 62, 11, 720896, 62)
+
+[node name="Letter2" parent="." instance=ExtResource("4_ffc5p")]
+position = Vector2(-6.395, 0)
+layer_0/tile_data = PackedInt32Array(1245194, 720896, 62, 1245195, 262144, 62, 1245196, 1376256, 62, 1245197, 262144, 62, 1245198, 720896, 62, 1245200, 65536, 63)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 105.0
+offset_right = 297.0
+offset_bottom = 272.0
+color = Color(0, 0, 0, 0.462745)
+
+[node name="Letter" parent="ColorRect" instance=ExtResource("4_ffc5p")]
+position = Vector2(3.11, 0)
+layer_0/tile_data = PackedInt32Array(262147, 720896, 62, 262148, 917504, 62, 262149, 131072, 62, 262150, 655360, 62)
+
+[connection signal="button_down" from="Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="Pre" to="." method="_on_pre_button_down"]
+[connection signal="button_down" from="Next" to="." method="_on_next_button_down"]
