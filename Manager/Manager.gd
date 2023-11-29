@@ -26,3 +26,11 @@ var PlayerFactory2PlayerNum = 2
 
 func _ready() -> void:
 	pass
+
+func PlayerSound(in_SoundPath)->void:
+	var SoundPlayer:AudioStreamPlayer = AudioStreamPlayer.new()
+	SoundPlayer.finished.connect(func():SoundPlayer.queue_free())
+	var audio = load(in_SoundPath)
+	SoundPlayer.set_stream(audio)
+	add_child(SoundPlayer)
+	SoundPlayer.play()

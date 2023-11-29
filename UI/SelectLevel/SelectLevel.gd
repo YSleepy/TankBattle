@@ -64,4 +64,5 @@ func _on_play_button_down() -> void:
 	else:
 		MainManager.LevelId = level_id
 		get_tree().change_scene_to_packed(load(MainManager.LevelBasePath%level_id))
+		MainManager.PlayerSound("res://Tank/sounds/gamestart.ogg")
 		
