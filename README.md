@@ -2,21 +2,28 @@
 _____________
 
 * "To recreate the childhood game 'Tank Battle' using Godot."
+* Godot v4.1.3.stable.official [f06b6836a]
 * @Author:XSleepy , YSleepy
 
 
 # Design
 _____________
 
-* 'Player Move':Correction Position when facing_direction changed
-* 'Enemy Move': Change it when i have time
+Pawn And Bullet
+> * 'Player Move':Correction Position when facing_direction changed
+> * 'Enemy Move': Correction Position when facing_direction changed
+> * 'Bullet':There is no collision between bullets.(To increase the difficulty of the game)
 
-* 'Rock':Can Destroy(2 times) :: <Design Error>
-* 'Brick':Can Destroy(1 times)
-* 'Iron':Can't Destroy
-* 'Grass':Cover
-* 'StaticWater,DynamicWater':Obstruct Player.Unblock Bullet
+Scene
+> * 'Rock':Can Destroy(2 times) :: <Design Error>
+> * 'Brick':Can Destroy(1 times)
+> * 'Iron':Can't Destroy
+> * 'Grass':Cover
+> * 'StaticWater,DynamicWater':Obstruct Player.Unblock Bullet
+> * 'Attack Border':Do not play sound effects
+> * 'Attack Scene':Play sound effects
+
+# TODO
+ 
 * 'Target':Game Over
-
-* 'Attack Border':Do not play sound effects
-* 'Attack Scene':Play sound effects
+* 'EnemyFactory': Spawn enemy using probabilities and enemy totals

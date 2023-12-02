@@ -1,49 +1,45 @@
-[gd_scene load_steps=11 format=3 uid="uid://cisl8kpsbaa68"]
+[gd_scene load_steps=9 format=3 uid="uid://cisl8kpsbaa68"]
 
 [ext_resource type="Script" path="res://Map/World.gd" id="1_fpj0b"]
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_goxku"]
 [ext_resource type="PackedScene" uid="uid://kq5oiq7imr2w" path="res://Map/World_Scene.tscn" id="2_hul86"]
 [ext_resource type="PackedScene" uid="uid://dujwo1o5inu0g" path="res://Map/Border.tscn" id="4_o0n2o"]
-[ext_resource type="PackedScene" uid="uid://cm8cmylpes31b" path="res://Map/SpawnEnemyToMap/EnemyFactory.tscn" id="5_x8snp"]
-[ext_resource type="PackedScene" uid="uid://cwjrkp5o6lbpa" path="res://Pawn/Enemy/Enemy/EnemyNormal/EnemyNormal.tscn" id="6_o0wa6"]
-[ext_resource type="PackedScene" uid="uid://d1ds6vdpnw64e" path="res://Map/SpawnPlayerToMap/PlayerFactory.tscn" id="7_ro32s"]
-[ext_resource type="PackedScene" uid="uid://ca8llm0uktaxa" path="res://Pawn/Enemy/Enemy/EnemyFast/EnemyFast.tscn" id="7_uusb5"]
+[ext_resource type="PackedScene" uid="uid://cm8cmylpes31b" path="res://Map/Factory/SpawnEnemyToMap/EnemyFactory.tscn" id="5_s8u1v"]
+[ext_resource type="PackedScene" uid="uid://d1ds6vdpnw64e" path="res://Map/Factory/SpawnPlayerToMap/PlayerFactory.tscn" id="6_hx0c5"]
 [ext_resource type="AudioStream" uid="uid://dlsflymud1d4e" path="res://Tank/sounds/gamestart.ogg" id="9_wh7iw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2aipb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24m0i"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
 [node name="World" type="Node2D"]
+position = Vector2(258, 16)
 script = ExtResource("1_fpj0b")
+metadata/EnemyFactoryNum = 3
 
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_2aipb")
+material = SubResource("ShaderMaterial_24m0i")
 layer_0/tile_data = PackedInt32Array(1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1)
 layer_1/tile_data = PackedInt32Array()
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(208, 208)
-limit_left = -160
-limit_top = -215
-limit_right = 208
-limit_bottom = 208
+limit_left = 0
+limit_top = 0
+limit_right = 900
+limit_bottom = 416
 
-[node name="EnemyFactory" parent="." instance=ExtResource("5_x8snp")]
+[node name="EnemyFactory" parent="." instance=ExtResource("5_s8u1v")]
 position = Vector2(48, 16)
-metadata/SceneArray = [ExtResource("6_o0wa6")]
 
-[node name="EnemyFactory1" parent="." instance=ExtResource("5_x8snp")]
+[node name="EnemyFactory1" parent="." instance=ExtResource("5_s8u1v")]
 position = Vector2(208, 16)
-metadata/SceneArray = [ExtResource("6_o0wa6")]
 
-[node name="EnemyFactory2" parent="." instance=ExtResource("5_x8snp")]
+[node name="EnemyFactory2" parent="." instance=ExtResource("5_s8u1v")]
 position = Vector2(368, 16)
-metadata/SceneArray = [ExtResource("7_uusb5")]
 
-[node name="PlayerFactory" parent="." instance=ExtResource("7_ro32s")]
+[node name="PlayerFactory" parent="." instance=ExtResource("6_hx0c5")]
 position = Vector2(160, 400)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

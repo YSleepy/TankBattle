@@ -9,6 +9,8 @@
 [node name="SelectLevel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 242.0
+offset_right = 242.0
 script = ExtResource("1_rxh83")
 
 [node name="Play" parent="." instance=ExtResource("2_sekrr")]
@@ -48,9 +50,9 @@ layer_0/tile_data = PackedInt32Array(0, 851968, 62, 1, 262144, 62, 2, 1507328, 6
 layout_mode = 1
 offset_left = 130.0
 offset_top = 105.0
-offset_right = 550.0
-offset_bottom = 530.0
-scale = Vector2(0.395, 0.395)
+offset_right = 546.0
+offset_bottom = 521.0
+scale = Vector2(0.4, 0.4)
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 

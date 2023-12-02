@@ -51,7 +51,11 @@ func update_animation_direction():
 
 func auto_walk(delta:float = 0.01)->void:
 	if abs(pre_frame_position.x-position.x)<smallest_per_frame_speed&&abs(pre_frame_position.y-position.y)<smallest_per_frame_speed:
-		facing_direction = get_random_direction()
+		var get_direction = get_random_direction()
+		while get_direction == facing_direction:
+			get_direction = get_random_direction()
+		facing_direction = get_direction
+		position = round(position/16)*16
 		velocity = facing_direction*speed*delta
 	pre_frame_position = position
 	move_and_slide()
@@ -123,7 +127,7 @@ func animation_play_walk(play_rect:Rect2)->void:
 	animation_player.play("Enemy_Walk")
 
 func get_random_direction()->Vector2i:
-	var in_num = randi_range(1,4)
+	var in_num = randi_range(1,5)
 	match in_num:
 		1:return get_meta("Direction_Up") as Vector2i
 		2:return get_meta("Direction_Down") as Vector2i

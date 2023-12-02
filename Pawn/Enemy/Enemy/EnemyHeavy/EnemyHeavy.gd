@@ -3,7 +3,7 @@ extends EnemyBase
 
 func _ready() -> void:
 	super._ready()
-	connect("applied_damage",Callable(self,""))
+	connect("applied_damage",Callable(self,"on_applied_damage_change_Animation"))
 
 
 func on_applied_damage_change_Animation(damage:int):

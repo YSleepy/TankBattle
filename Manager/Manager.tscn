@@ -1,6 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckaalw2bdw4ok"]
+[gd_scene load_steps=5 format=3 uid="uid://ckaalw2bdw4ok"]
 
 [ext_resource type="Script" path="res://Manager/Manager.gd" id="1_1v8fa"]
 
+[sub_resource type="Animation" id="Animation_qnsia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ihmfy"]
+resource_name = "Transition"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_481lp"]
+_data = {
+"RESET": SubResource("Animation_qnsia"),
+"Transition": SubResource("Animation_ihmfy")
+}
+
 [node name="Manager" type="CanvasLayer"]
 script = ExtResource("1_1v8fa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 242.0
+offset_right = 690.0
+offset_bottom = 448.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_481lp")
+}

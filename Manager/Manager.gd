@@ -2,6 +2,11 @@ class_name Manager
 
 extends CanvasLayer
 
+
+# 2340×1080
+# *416
+
+
 enum GameModeType{
 	Null,
 	Player,
@@ -34,3 +39,8 @@ func PlayerSound(in_SoundPath)->void:
 	SoundPlayer.set_stream(audio)
 	add_child(SoundPlayer)
 	SoundPlayer.play()
+
+
+
+func PlaySceneTransition()->void:
+	$AnimationPlayer.play("Transition")

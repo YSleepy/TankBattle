@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm8cmylpes31b"]
+
+[ext_resource type="Script" path="res://Map/Factory/SpawnEnemyToMap/EnemyFactory.gd" id="1_5q70a"]
+[ext_resource type="PackedScene" uid="uid://cwjrkp5o6lbpa" path="res://Pawn/Enemy/Enemy/EnemyNormal/EnemyNormal.tscn" id="2_ssxjo"]
+[ext_resource type="PackedScene" uid="uid://ca8llm0uktaxa" path="res://Pawn/Enemy/Enemy/EnemyFast/EnemyFast.tscn" id="3_rgw2k"]
+[ext_resource type="PackedScene" uid="uid://b447vwfokk4or" path="res://Pawn/Enemy/Enemy/EnemyHeavy/EnemyHeavy.tscn" id="4_m5l0u"]
+
+[node name="SpawnEnemyPosition" type="Node2D"]
+script = ExtResource("1_5q70a")
+metadata/LargestExistNum = 1
+metadata/SceneArray = [{
+"A": 0.0,
+"B": 50.0,
+"EnemyScene": ExtResource("2_ssxjo")
+}, {
+"A": 50.0,
+"B": 80.0,
+"EnemyScene": ExtResource("3_rgw2k")
+}, {
+"A": 80.0,
+"B": 100.0,
+"EnemyScene": ExtResource("4_m5l0u")
+}]
+metadata/EnemyTotalNum = 2
+metadata/CustomInterval = [0.0, 100.0]

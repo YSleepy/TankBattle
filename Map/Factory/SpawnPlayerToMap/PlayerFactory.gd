@@ -1,5 +1,7 @@
 class_name PlayerFactory
-extends Node2D
+extends Factory
+
+
 
 var res_player = preload("res://Pawn/player.tscn")
 
@@ -18,3 +20,6 @@ func make_player()->void:
 		instance_player.position = self.position
 		get_parent().add_child.call_deferred(instance_player)
 		player_total_num-=1
+	else :
+		emit_signal("factory_queue_free",FactoryType.EnemyFactory)
+		self.queue_free()

@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1ds6vdpnw64e"]
 
-[ext_resource type="Script" path="res://Map/SpawnPlayerToMap/PlayerFactory.gd" id="1_mkegf"]
+[ext_resource type="Script" path="res://Map/Factory/SpawnPlayerToMap/PlayerFactory.gd" id="1_inh36"]
 
 [node name="PlayerFactory" type="Node2D"]
-script = ExtResource("1_mkegf")
+script = ExtResource("1_inh36")
 metadata/PlayTotalNum = 3
 metadata/FactoryId = 0

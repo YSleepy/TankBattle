@@ -29,11 +29,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		fire()
 
 # TODO 未优化输入
-
+# 矫正位置
 func correction_position()->void:
-	pass
+	position = round(position/16)*16
 
-func update_facing_direction(in_direction:Vector2)->void:
+func update_facing_direction(in_direction:Vector2i)->void:
 	if in_direction!=facing_direction:
 		facing_direction = in_direction
 		emit_signal("changed_facing_direction")
@@ -44,22 +44,22 @@ func player_move():
 	if horizontal_input>0:
 		vertical_input=0
 		animation_player.play("Walk_Right")
-		facing_direction =Vector2i(1,0)
+		update_facing_direction(Vector2i(1,0))
 	elif horizontal_input<0:
 		vertical_input=0
 		animation_player.play("Walk_Left")
-		facing_direction = Vector2i(-1,0)
+		update_facing_direction(Vector2i(-1,0))
 	var horizontal_velocity = horizontal_input * speed
 	velocity.x = horizontal_velocity
 	# 处理垂直移动
 	if vertical_input>0:
 		horizontal_input=0
 		animation_player.play("Walk_Down")
-		facing_direction= Vector2i(0,1)
+		update_facing_direction(Vector2i(0,1))
 	elif vertical_input<0:
 		horizontal_input=0
 		animation_player.play("Walk_Up")
-		facing_direction=Vector2i(0,-1)
+		update_facing_direction(Vector2i(0,-1))
 	var vertical_velocity = vertical_input * speed
 	velocity.y = vertical_velocity
 	move_and_slide()
@@ -91,6 +91,7 @@ func fire()->void :
 @warning_ignore("unused_parameter")
 func _process(delta):
 	player_move()
+	print(position)
 
 
 func _on_timer_timeout_stop_animation():

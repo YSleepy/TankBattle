@@ -24,8 +24,8 @@ MainManager="*res://Manager/Manager.tscn"
 
 [display]
 
-window/size/viewport_width=416
-window/size/viewport_height=416
+window/size/viewport_width=900
+window/size/viewport_height=448
 window/stretch/mode="canvas_items"
 
 [input]
@@ -60,4 +60,5 @@ Fire={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true

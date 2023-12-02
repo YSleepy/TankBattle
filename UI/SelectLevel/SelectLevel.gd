@@ -10,6 +10,7 @@ var level_id_position0:Vector2i = Vector2i(17,19)# 10^0 1 个位
 
 func _ready() -> void:
 	$ColorRect.visible = false
+	
 
 
 func _on_next_button_down() -> void:
@@ -63,6 +64,7 @@ func _on_play_button_down() -> void:
 		pass
 	else:
 		MainManager.LevelId = level_id
-		get_tree().change_scene_to_packed(load(MainManager.LevelBasePath%level_id))
 		MainManager.PlayerSound("res://Tank/sounds/gamestart.ogg")
-		
+		MainManager.PlaySceneTransition()
+		await get_tree().create_timer(.7).timeout
+		get_tree().change_scene_to_packed(load(MainManager.LevelBasePath%level_id))
