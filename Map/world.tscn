@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cisl8kpsbaa68"]
+[gd_scene load_steps=11 format=3 uid="uid://cisl8kpsbaa68"]
 
 [ext_resource type="Script" path="res://Map/World.gd" id="1_fpj0b"]
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_goxku"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dujwo1o5inu0g" path="res://Map/Border.tscn" id="4_o0n2o"]
 [ext_resource type="PackedScene" uid="uid://cm8cmylpes31b" path="res://Map/Factory/SpawnEnemyToMap/EnemyFactory.tscn" id="5_s8u1v"]
 [ext_resource type="PackedScene" uid="uid://d1ds6vdpnw64e" path="res://Map/Factory/SpawnPlayerToMap/PlayerFactory.tscn" id="6_hx0c5"]
+[ext_resource type="PackedScene" uid="uid://cf7ju0cia1sun" path="res://UI/UesrUI/InputUi.tscn" id="8_h6oya"]
+[ext_resource type="PackedScene" uid="uid://mnrtaxrugavs" path="res://UI/UesrUI/InputFireUi.tscn" id="9_gv6a8"]
 [ext_resource type="AudioStream" uid="uid://dlsflymud1d4e" path="res://Tank/sounds/gamestart.ogg" id="9_wh7iw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_24m0i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adybl"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -20,7 +22,7 @@ metadata/EnemyFactoryNum = 3
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_24m0i")
+material = SubResource("ShaderMaterial_adybl")
 layer_0/tile_data = PackedInt32Array(1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1)
 layer_1/tile_data = PackedInt32Array()
 
@@ -44,3 +46,10 @@ position = Vector2(160, 400)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_wh7iw")
+
+[node name="InputUi" parent="." instance=ExtResource("8_h6oya")]
+position = Vector2(-138, 324)
+scale = Vector2(1.405, 1.405)
+
+[node name="InputFireUi" parent="." instance=ExtResource("9_gv6a8")]
+position = Vector2(545, 324)

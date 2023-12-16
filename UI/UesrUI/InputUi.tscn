@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf7ju0cia1sun"]
+
+[ext_resource type="Texture2D" uid="uid://7eckrumimdle" path="res://icon.svg" id="1_nb1ig"]
+
+[node name="InputUi" type="Node2D"]
+
+[node name="Up" type="TouchScreenButton" parent="."]
+position = Vector2(-19.2, -63)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_nb1ig")
+action = "Walk_Up"
+
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2(-63, -19.5)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_nb1ig")
+action = "Walk_Left"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+position = Vector2(24.6, -19.2)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_nb1ig")
+action = "Walk_Right"
+
+[node name="Down" type="TouchScreenButton" parent="."]
+position = Vector2(-19.2, 24.6)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_nb1ig")
+action = "Walk_Down"

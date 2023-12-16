@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://mnrtaxrugavs"]
+
+[ext_resource type="Texture2D" uid="uid://7eckrumimdle" path="res://icon.svg" id="1_cwa86"]
+
+[node name="InputFireUi" type="Node2D"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(-64, -64)
+texture_normal = ExtResource("1_cwa86")
+action = "Fire"

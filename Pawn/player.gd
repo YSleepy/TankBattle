@@ -91,7 +91,6 @@ func fire()->void :
 @warning_ignore("unused_parameter")
 func _process(delta):
 	player_move()
-	print(position)
 
 
 func _on_timer_timeout_stop_animation():

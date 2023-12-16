@@ -27,3 +27,7 @@ Scene
  
 * 'Target':Game Over
 * 'EnemyFactory': Spawn enemy using probabilities and enemy totals
+* 'GameMoe': Unlock next level
+* 'GameOver': GameOver UI
+* 'UI': Setting
+* 'Player Move': input optimization
