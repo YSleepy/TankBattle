@@ -21,5 +21,5 @@ func make_player()->void:
 		get_parent().add_child.call_deferred(instance_player)
 		player_total_num-=1
 	else :
-		emit_signal("factory_queue_free",FactoryType.EnemyFactory)
+		emit_signal("factory_queue_free",FactoryType.PlayerFactory)
 		self.queue_free()

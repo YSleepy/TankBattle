@@ -5,6 +5,9 @@ extends Node2D
 #48,16(208,16)(368,16)(160,400)
 var enemy_factory_num:int
 
+var is_win:bool=false
+
+
 func _ready() -> void:
 	enemy_factory_num = get_meta("EnemyFactoryNum")
 	$EnemyFactory.connect("factory_queue_free",(Callable(self,"try_game_over")))
@@ -16,9 +19,9 @@ func try_game_over(in_factory_type:Factory.FactoryType):
 	if in_factory_type == Factory.FactoryType.EnemyFactory:
 		enemy_factory_num-=1
 		if enemy_factory_num <=0:
-			print("Game Over,You Win")
-			get_tree().set_pause(true)
+			$GameOverUi.set_win(true)
+			$AnimationPlayer.play("AnimGameOver")
 	elif in_factory_type == Factory.FactoryType.PlayerFactory:
 		if $PlayerFactory.player_total_num <=0:
-			print("Game Over,You Dead")
-			get_tree().set_pause(true)
+			$GameOverUi.set_win(false)
+			$AnimationPlayer.play("AnimGameOver")
