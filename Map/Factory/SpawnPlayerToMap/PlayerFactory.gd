@@ -1,7 +1,7 @@
 class_name PlayerFactory
 extends Factory
 
-
+signal player_total_num_change
 
 var res_player = preload("res://Pawn/player.tscn")
 
@@ -20,6 +20,7 @@ func make_player()->void:
 		instance_player.position = self.position
 		get_parent().add_child.call_deferred(instance_player)
 		player_total_num-=1
+		emit_signal("player_total_num_change")
 	else :
 		emit_signal("factory_queue_free",FactoryType.PlayerFactory)
 		self.queue_free()

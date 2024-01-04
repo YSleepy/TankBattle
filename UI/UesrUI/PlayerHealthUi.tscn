@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4ry130tawxc"]
+
+[ext_resource type="Script" path="res://UI/UesrUI/PlayerHealthUi.gd" id="1_ngo28"]
+[ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_urejy"]
+[ext_resource type="Texture2D" uid="uid://c7df6mnrv37jt" path="res://Tank/icon.png" id="2_0lbo7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_te0i4"]
+shader = ExtResource("1_urejy")
+
+[node name="PlayerHealthUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ngo28")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_te0i4")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_0lbo7")
+
+[node name="Health" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 12.565
+offset_right = 86.0
+offset_bottom = 35.565
+text = "0"

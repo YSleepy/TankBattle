@@ -14,7 +14,10 @@ func _ready() -> void:
 	$EnemyFactory1.connect("factory_queue_free",(Callable(self,"try_game_over")))
 	$EnemyFactory2.connect("factory_queue_free",(Callable(self,"try_game_over")))
 	$PlayerFactory.connect("factory_queue_free",(Callable(self,"try_game_over")))
+	$PlayerFactory.connect("player_total_num_change",func():$PlayerHealthUi.update_health($PlayerFactory.player_total_num))
 	
+
+
 func try_game_over(in_factory_type:Factory.FactoryType):
 	if in_factory_type == Factory.FactoryType.EnemyFactory:
 		enemy_factory_num-=1

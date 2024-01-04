@@ -16,6 +16,7 @@ func set_win(is_win:bool):
 	else:
 		is_win = true
 		update_manager_data()
+		GameSave.save_game(MainManager)
 
 func update_manager_data()->void:
 	if MainManager.LevelTotalNum>MainManager.MaxUnlockLevelId:

@@ -51,6 +51,7 @@ func update_animation_direction():
 
 func auto_walk(delta:float = 0.01)->void:
 	if abs(pre_frame_position.x-position.x)<smallest_per_frame_speed&&abs(pre_frame_position.y-position.y)<smallest_per_frame_speed:
+		print(abs(pre_frame_position.x-position.x),abs(pre_frame_position.y-position.y))
 		var get_direction = get_random_direction()
 		while get_direction == facing_direction:
 			get_direction = get_random_direction()

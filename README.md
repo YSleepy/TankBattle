@@ -22,12 +22,17 @@ Scene
 > * 'StaticWater,DynamicWater':Obstruct Player.Unblock Bullet
 > * 'Attack Border':Do not play sound effects
 > * 'Attack Scene':Play sound effects
+> * 'EnemyFactory': Spawn enemy using probabilities and enemy totals
+
+
+Game
+> * 'GameMoe': Unlock next level
+> * 'GameOver': GameOver UI
+> * 'HealthUi':show player factory remain num
+
+
 
 # TODO
- 
 * 'Target':Game Over
-* 'EnemyFactory': Spawn enemy using probabilities and enemy totals
-* 'GameMoe': Unlock next level
-* 'GameOver': GameOver UI
-* 'UI': Setting
-* 'Player Move': input optimization
+* 'UI': Back,rollback can use the stack(this project does not use)
+* 'Player Move': input optimization(use stack),rocker input Ui

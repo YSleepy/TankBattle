@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cisl8kpsbaa68"]
+[gd_scene load_steps=16 format=3 uid="uid://cisl8kpsbaa68"]
 
 [ext_resource type="Script" path="res://Map/World.gd" id="1_fpj0b"]
 [ext_resource type="Shader" path="res://Pawn/Opaque.gdshader" id="1_goxku"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://mnrtaxrugavs" path="res://UI/UesrUI/InputFireUi.tscn" id="9_gv6a8"]
 [ext_resource type="AudioStream" uid="uid://dlsflymud1d4e" path="res://Tank/sounds/gamestart.ogg" id="9_wh7iw"]
 [ext_resource type="PackedScene" uid="uid://dnm4uuj87m45b" path="res://UI/UesrUI/GameOverUi.tscn" id="10_4vcqn"]
+[ext_resource type="PackedScene" uid="uid://b4ry130tawxc" path="res://UI/UesrUI/PlayerHealthUi.tscn" id="11_p2p2y"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbamp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wo16"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -59,7 +60,7 @@ metadata/EnemyFactoryNum = 3
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_lbamp")
+material = SubResource("ShaderMaterial_6wo16")
 layer_0/tile_data = PackedInt32Array(1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1)
 layer_1/tile_data = PackedInt32Array()
 
@@ -103,3 +104,9 @@ offset_bottom = -464.16
 libraries = {
 "": SubResource("AnimationLibrary_mmrhq")
 }
+
+[node name="PlayerHealthUi" parent="." instance=ExtResource("11_p2p2y")]
+offset_left = -154.0
+offset_top = -11.0
+offset_right = -154.0
+offset_bottom = -11.0

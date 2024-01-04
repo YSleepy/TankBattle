@@ -30,7 +30,7 @@ var PlayerFactory1PlayerNum = 2
 var PlayerFactory2PlayerNum = 2
 
 func _ready() -> void:
-	pass
+	GameSave.load_game(self)
 
 func PlayerSound(in_SoundPath)->void:
 	var SoundPlayer:AudioStreamPlayer = AudioStreamPlayer.new()

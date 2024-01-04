@@ -16,7 +16,7 @@ config/name_localized={
 }
 run/main_scene="res://UI/MainUi.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Tank/icon.png"
 
 [autoload]
 
