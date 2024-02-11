@@ -15,10 +15,15 @@ func _ready() -> void:
 	$EnemyFactory2.connect("factory_queue_free",(Callable(self,"try_game_over")))
 	$PlayerFactory.connect("factory_queue_free",(Callable(self,"try_game_over")))
 	$PlayerFactory.connect("player_total_num_change",func():$PlayerHealthUi.update_health($PlayerFactory.player_total_num))
-	
+	$World_Scenne.connect("target_attacked",(Callable(self,"try_game_over")))
 
 
-func try_game_over(in_factory_type:Factory.FactoryType):
+func try_game_over(in_factory_type):
+	if in_factory_type == null:
+		$GameOverUi.set_win(false)
+		$AnimationPlayer.play("AnimGameOver")
+		
+		return
 	if in_factory_type == Factory.FactoryType.EnemyFactory:
 		enemy_factory_num-=1
 		if enemy_factory_num <=0:

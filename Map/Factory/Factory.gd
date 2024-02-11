@@ -7,4 +7,4 @@ enum FactoryType{
 	PlayerFactory
 }
 
-signal factory_queue_free(in_factory_type:FactoryType)
+signal factory_queue_free(in_factory_type)

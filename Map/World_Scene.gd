@@ -12,6 +12,8 @@ border range
 TileCanDestroy Rule : enum TileCanDestroy
 	
 '''
+signal target_attacked
+
 enum Enum_TileCanDestroy{
 	Rock,
 	Brick,
@@ -70,7 +72,7 @@ func set_tile(in_bullet_owner: Bullet.BulletOwner,in_damage:int,layer: int, coor
 			return true
 			
 		Enum_TileCanDestroy.Target:
-			# GameOver
+			emit_signal("target_attacked",null)
 			return true
 			
 #		Enum_TileCanDestroy.Grass:

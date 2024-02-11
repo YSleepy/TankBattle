@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dnm4uuj87m45b" path="res://UI/UesrUI/GameOverUi.tscn" id="10_4vcqn"]
 [ext_resource type="PackedScene" uid="uid://b4ry130tawxc" path="res://UI/UesrUI/PlayerHealthUi.tscn" id="11_p2p2y"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wo16"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mww8v"]
 resource_local_to_scene = true
 shader = ExtResource("1_goxku")
 
@@ -60,7 +60,7 @@ metadata/EnemyFactoryNum = 3
 [node name="Border" parent="." instance=ExtResource("4_o0n2o")]
 
 [node name="World_Scenne" parent="." instance=ExtResource("2_hul86")]
-material = SubResource("ShaderMaterial_6wo16")
+material = SubResource("ShaderMaterial_mww8v")
 layer_0/tile_data = PackedInt32Array(1507339, 131072, 0, 1572875, 196608, 0, 1638411, 196608, 1, 1507340, 196608, 0, 1572876, 786432, 0, 1638412, 786432, 1, 1507341, 131072, 0, 1572877, 851968, 0, 1638413, 851968, 1, 1507342, 196608, 0, 1572878, 196608, 0, 1638414, 196608, 1)
 layer_1/tile_data = PackedInt32Array()
 

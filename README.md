@@ -36,3 +36,6 @@ Game
 * 'Target':Game Over
 * 'UI': Back,rollback can use the stack(this project does not use)
 * 'Player Move': input optimization(use stack),rocker input Ui
+
+# Code Standard
+* None
